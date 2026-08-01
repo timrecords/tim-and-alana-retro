@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Restricted System Access</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="theme-terminal">
+  <main class="terminal-shell">
+    <p class="terminal-line">PARK SYSTEMS // WEDDING OPERATIONS NETWORK</p>
+    <h1>RESTRICTED ACCESS</h1>
+    <p class="terminal-line" id="terminal-message">ENTER AUTHORIZATION PHRASE:</p>
+    <form id="access-form">
+      <label for="password">PASSWORD:</label><br>
+      <input class="terminal-input" id="password" name="password" autocomplete="off">
+      <button class="terminal-button" type="submit">EXECUTE</button>
+    </form>
+    <div class="denied-grid" id="denied-grid" aria-hidden="true">
+      <span>ACCESS DENIED</span><span>ACCESS DENIED</span><span>ACCESS DENIED</span>
+      <span>ACCESS DENIED</span><span>ACCESS DENIED</span><span>ACCESS DENIED</span>
+    </div>
+    <p class="terminal-line">HINT: The system administrator is more interested in snacks than security.</p>
+    <p><a href="index.html">RETURN TO SAFE ZONE</a></p>
+  </main>
+  <script>
+    const form = document.getElementById("access-form");
+    const message = document.getElementById("terminal-message");
+    const grid = document.getElementById("denied-grid");
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const value = document.getElementById("password").value.trim().toLowerCase();
+      if (["clever girl", "wedding", "cake"].includes(value)) {
+        message.textContent = "ACCESS GRANTED. THE DINOSAURS HAVE BEEN INVITED.";
+        grid.innerHTML = "<span>WELCOME</span><span>TIM</span><span>&</span><span>ALANA</span><span>WEDDING</span><span>SYSTEM</span>";
+      } else {
+        message.textContent = "ACCESS DENIED. NICE TRY, COMPUTER USER.";
+        grid.animate(
+          [{ transform: "translateX(0)" }, { transform: "translateX(-8px)" }, { transform: "translateX(8px)" }, { transform: "translateX(0)" }],
+          { duration: 250 }
+        );
+      }
+    });
+  </script>
+</body>
+</html>
