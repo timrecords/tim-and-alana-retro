@@ -3,10 +3,10 @@
   All pages read from these shared settings.
 */
 window.WEDDING_CONFIG = {
-  couple: "YOUR NAME + PARTNER NAME",
-  shortCouple: "NAME1 & NAME2",
-  weddingDate: "2027-06-12T16:00:00-07:00",
-  weddingDateDisplay: "JUNE 12, 2027",
+  couple: "TIM RECORDS + ALANA KIVOWITZ",
+  shortCouple: "TIM & ALANA",
+  weddingDate: "2027-07-10T15:30:00-07:00",
+  weddingDateDisplay: "JULY 10, 2027",
   city: "SAN FRANCISCO, CALIFORNIA",
   email: "hello@example.com",
 
