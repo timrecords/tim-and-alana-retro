@@ -1,0 +1,1144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <meta
+    name="description"
+    content="Meet Tim's grooms party in an original 1990s arcade fighting tournament."
+  >
+
+  <title>Grooms Party | Tim &amp; Alana</title>
+
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <script src="assets/js/config.js"></script>
+
+  <style>
+    /*
+      Page-specific arcade styles.
+      These build on the .theme-kombat styles in style.css.
+    */
+
+    .arcade-screen {
+      position: relative;
+      overflow: hidden;
+      min-height: 420px;
+      padding: 40px 20px;
+      text-align: center;
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(186, 28, 28, 0.42),
+          rgba(0, 0, 0, 0.96) 68%
+        );
+      border: 5px ridge #bd1e24;
+      box-shadow:
+        inset 0 0 40px #000,
+        0 0 25px rgba(255, 74, 0, 0.4);
+    }
+
+    .arcade-screen::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          rgba(255, 255, 255, 0.025) 0,
+          rgba(255, 255, 255, 0.025) 2px,
+          transparent 2px,
+          transparent 5px
+        );
+    }
+
+    .arcade-kicker {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 12px;
+      color: #f3e5c8;
+      font-family: "Courier New", monospace;
+      font-size: 0.9rem;
+      letter-spacing: 4px;
+    }
+
+    .arcade-title {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      color: #f6b51b;
+      font-family: Impact, "Arial Black", sans-serif;
+      font-size: clamp(2.8rem, 10vw, 6.8rem);
+      line-height: 0.92;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-shadow:
+        3px 3px 0 #bd1e24,
+        6px 6px 0 #000,
+        0 0 20px rgba(246, 181, 27, 0.45);
+    }
+
+    .arcade-subtitle {
+      position: relative;
+      z-index: 1;
+      max-width: 620px;
+      margin: 26px auto;
+      color: #fff;
+      font-family: "Courier New", monospace;
+      font-size: 1.05rem;
+    }
+
+    .insert-coin {
+      position: relative;
+      z-index: 1;
+      margin: 26px 0 12px;
+      color: #f6b51b;
+      font-family: "Courier New", monospace;
+      font-size: clamp(1.2rem, 4vw, 2rem);
+      font-weight: bold;
+      letter-spacing: 5px;
+      animation: arcade-blink 0.8s steps(2, start) infinite;
+    }
+
+    @keyframes arcade-blink {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    .start-button {
+      position: relative;
+      z-index: 1;
+      display: inline-block;
+      padding: 13px 22px;
+      background: linear-gradient(#ffd45b, #bd1e24);
+      color: #000;
+      border: 4px outset #ffd77b;
+      box-shadow: 5px 5px 0 #000;
+      font-family: Impact, "Arial Black", sans-serif;
+      font-size: 1rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .start-button:active {
+      transform: translate(3px, 3px);
+      border-style: inset;
+      box-shadow: 2px 2px 0 #000;
+    }
+
+    .roster-area[hidden] {
+      display: none;
+    }
+
+    .character-select-heading {
+      margin-bottom: 8px;
+      text-align: center;
+      color: #f6b51b;
+      font-family: Impact, "Arial Black", sans-serif;
+      font-size: clamp(2rem, 7vw, 4rem);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-shadow:
+        3px 3px 0 #bd1e24,
+        6px 6px 0 #000;
+    }
+
+    .character-select-subtitle {
+      margin-top: 0;
+      text-align: center;
+      color: #f3e5c8;
+      font-family: "Courier New", monospace;
+    }
+
+    .fighter-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .fighter-card {
+      position: relative;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+      background:
+        linear-gradient(
+          180deg,
+          rgba(50, 50, 50, 0.98),
+          rgba(7, 7, 7, 0.98)
+        );
+      border: 4px ridge #bd1e24;
+      box-shadow:
+        7px 7px 0 #000,
+        inset 0 0 24px rgba(255, 98, 0, 0.12);
+      transition:
+        transform 0.14s ease,
+        box-shadow 0.14s ease;
+    }
+
+    .fighter-card:hover,
+    .fighter-card:focus-within {
+      transform: translateY(-4px);
+      box-shadow:
+        9px 11px 0 #000,
+        0 0 22px rgba(246, 181, 27, 0.32);
+    }
+
+    .fighter-portrait {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      background:
+        radial-gradient(
+          circle at 50% 35%,
+          rgba(246, 181, 27, 0.2),
+          transparent 40%
+        ),
+        linear-gradient(135deg, #4a0d0d, #050505);
+      border-bottom: 4px ridge #bd1e24;
+    }
+
+    .fighter-portrait img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter:
+        saturate(0.9)
+        contrast(1.08);
+    }
+
+    .fighter-number {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      min-width: 42px;
+      padding: 5px 8px;
+      background: #000;
+      color: #f6b51b;
+      border: 2px solid #f6b51b;
+      font-family: "Courier New", monospace;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .fighter-role {
+      position: absolute;
+      right: 8px;
+      bottom: 8px;
+      padding: 5px 8px;
+      background: #bd1e24;
+      color: #fff;
+      border: 2px outset #ff7d69;
+      font-family: "Courier New", monospace;
+      font-size: 0.78rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .fighter-body {
+      padding: 17px;
+    }
+
+    .fighter-name {
+      margin: 0 0 12px;
+      color: #f6b51b;
+      font-family: Impact, "Arial Black", sans-serif;
+      font-size: 2rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .fighter-meta {
+      margin: 0 0 14px;
+      color: #f3e5c8;
+      font-family: "Courier New", monospace;
+      font-size: 0.88rem;
+      line-height: 1.65;
+    }
+
+    .fighter-meta strong {
+      color: #f6b51b;
+    }
+
+    .move-list {
+      margin: 14px 0;
+      padding: 12px;
+      background: #080808;
+      border: 2px inset #555;
+      font-family: "Courier New", monospace;
+      font-size: 0.86rem;
+    }
+
+    .move-list p {
+      margin: 6px 0;
+    }
+
+    .move-list strong {
+      color: #f6b51b;
+    }
+
+    .fighter-story {
+      margin: 15px 0;
+      padding: 11px;
+      background: rgba(189, 30, 36, 0.14);
+      border-left: 5px solid #bd1e24;
+      color: #f3e5c8;
+      font-family: Arial, sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    .stat-row {
+      margin: 10px 0;
+    }
+
+    .stat-label {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 4px;
+      color: #f3e5c8;
+      font-family: "Courier New", monospace;
+      font-size: 0.75rem;
+    }
+
+    .stat-bar {
+      height: 15px;
+      overflow: hidden;
+      background: #000;
+      border: 2px inset #666;
+    }
+
+    .stat-bar span {
+      display: block;
+      height: 100%;
+      width: var(--stat-level, 90%);
+      background:
+        repeating-linear-gradient(
+          90deg,
+          #f6b51b 0 10px,
+          #bd1e24 10px 20px
+        );
+    }
+
+    .fighter-quote {
+      margin: 16px 0 0;
+      color: #fff;
+      font-family: Georgia, "Times New Roman", serif;
+      font-style: italic;
+      text-align: center;
+    }
+
+    .final-boss {
+      position: relative;
+      overflow: hidden;
+      margin-top: 24px;
+      padding: 24px;
+      text-align: center;
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(246, 181, 27, 0.2),
+          transparent 45%
+        ),
+        #080808;
+      border: 5px ridge #f6b51b;
+      box-shadow:
+        7px 7px 0 #000,
+        inset 0 0 30px rgba(189, 30, 36, 0.32);
+    }
+
+    .final-boss h2 {
+      margin-bottom: 8px;
+      font-size: clamp(2.3rem, 8vw, 5rem);
+    }
+
+    .final-boss-name {
+      margin: 5px 0 18px;
+      color: #fff;
+      font-family: Impact, "Arial Black", sans-serif;
+      font-size: clamp(2.4rem, 8vw, 4.8rem);
+      letter-spacing: 3px;
+      text-shadow:
+        3px 3px 0 #bd1e24,
+        6px 6px 0 #000;
+    }
+
+    .victory-screen {
+      margin-top: 24px;
+      padding: 30px 18px;
+      text-align: center;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(189, 30, 36, 0.22),
+          rgba(246, 181, 27, 0.16)
+        ),
+        #080808;
+      border: 5px double #f6b51b;
+    }
+
+    .victory-word {
+      margin: 0;
+      color: #f6b51b;
+      font-family: Impact, "Arial Black", sans-serif;
+      font-size: clamp(3rem, 11vw, 7rem);
+      letter-spacing: 4px;
+      text-shadow:
+        4px 4px 0 #bd1e24,
+        8px 8px 0 #000;
+    }
+
+    .arcade-link-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    @media (max-width: 760px) {
+      .fighter-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .arcade-screen {
+        min-height: 360px;
+        padding: 30px 14px;
+      }
+
+      .fighter-name {
+        font-size: 1.7rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .insert-coin {
+        animation: none;
+      }
+
+      .fighter-card {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body class="theme-kombat">
+  <a class="skip-link" href="#main">
+    Skip to content
+  </a>
+
+  <div class="site-wrap">
+    <div class="browser-bar">
+      ARCADE NETWORK 96™ —
+      TOURNAMENT CARTRIDGE LOADED —
+      PLAYER ONE READY
+    </div>
+
+    <header class="hero">
+      <h1 class="logo">
+        GROOM'S PARTY
+      </h1>
+
+      <p class="tagline">
+        <span data-date-display>
+          JUNE 12, 2027
+        </span>
+
+        ★
+
+        <span data-city>
+          SAN FRANCISCO
+        </span>
+      </p>
+
+      <p class="blink">
+        ★ FRIENDSHIP HAS ENTERED THE ARENA ★
+      </p>
+    </header>
+
+    <div
+      class="marquee"
+      aria-label="Arcade tournament announcement"
+    >
+      <span>
+        INSERT COIN ★ SELECT YOUR CHAMPION ★
+        FORMALWEAR REQUIRED ★ HYDRATION ENCOURAGED ★
+      </span>
+    </div>
+
+    <nav
+      class="retro-nav"
+      aria-label="Main navigation"
+      data-nav
+    ></nav>
+
+    <main id="main">
+      <p class="theme-note">
+        An original 1990s arcade-tournament homage built
+        with original CSS, personal photographs, fake stats,
+        and no copied game artwork.
+      </p>
+
+      <section
+        class="arcade-screen"
+        id="arcade-intro"
+        aria-labelledby="arcade-title"
+      >
+        <p class="arcade-kicker">
+          TIM RECORDS PRESENTS
+        </p>
+
+        <h2
+          class="arcade-title"
+          id="arcade-title"
+        >
+          Tournament<br>
+          of Legends
+        </h2>
+
+        <p class="arcade-subtitle">
+          A fearless roster of best men, groomsmen,
+          longtime friends, logistical masterminds,
+          and highly questionable influences.
+        </p>
+
+        <p class="insert-coin">
+          INSERT COIN
+        </p>
+
+        <button
+          class="start-button"
+          id="start-tournament"
+          type="button"
+        >
+          Press Start
+        </button>
+      </section>
+
+      <section
+        class="roster-area"
+        id="roster-area"
+        hidden
+      >
+        <h2 class="character-select-heading">
+          Select Your Champion
+        </h2>
+
+        <p class="character-select-subtitle">
+          Choose carefully. The dance floor awaits.
+        </p>
+
+        <div class="fighter-grid">
+          <!--
+            FIGHTER 01
+            Replace the name, photo, story, traits,
+            stats, and quote.
+          -->
+
+          <article class="fighter-card">
+            <div class="fighter-portrait">
+              <img
+                src="assets/images/placeholder.svg"
+                alt="Portrait of the best man"
+              >
+
+              <span class="fighter-number">
+                P1
+              </span>
+
+              <span class="fighter-role">
+                Best Man
+              </span>
+            </div>
+
+            <div class="fighter-body">
+              <h3 class="fighter-name">
+                [BEST MAN NAME]
+              </h3>
+
+              <p class="fighter-meta">
+                <strong>ORIGIN REALM:</strong>
+                [CITY OR HOMETOWN]
+                <br>
+
+                <strong>YEARS KNOWN:</strong>
+                [NUMBER]
+                <br>
+
+                <strong>CLASS:</strong>
+                Strategic Companion
+              </p>
+
+              <div class="move-list">
+                <p>
+                  <strong>SPECIAL MOVE:</strong>
+                  [EPIC TRAIT OR SKILL]
+                </p>
+
+                <p>
+                  <strong>ULTIMATE:</strong>
+                  [FUNNY ABILITY]
+                </p>
+
+                <p>
+                  <strong>WEAKNESS:</strong>
+                  [RUNNING JOKE]
+                </p>
+
+                <p>
+                  <strong>WEAPON:</strong>
+                  [FUNNY OBJECT]
+                </p>
+              </div>
+
+              <div class="fighter-story">
+                <strong>LEGENDARY ENCOUNTER:</strong>
+                Add a short funny story that captures why
+                this person belongs in the tournament.
+              </div>
+
+              <div class="stat-row">
+                <div class="stat-label">
+                  <span>LOYALTY</span>
+                  <span>99</span>
+                </div>
+
+                <div class="stat-bar">
+                  <span style="--stat-level: 99%"></span>
+                </div>
+              </div>
+
+              <div class="stat-row">
+                <div class="stat-label">
+                  <span>TOAST POWER</span>
+                  <span>94</span>
+                </div>
+
+                <div class="stat-bar">
+                  <span style="--stat-level: 94%"></span>
+                </div>
+              </div>
+
+              <div class="stat-row">
+                <div class="stat-label">
+                  <span>CRISIS MANAGEMENT</span>
+                  <span>97</span>
+                </div>
+
+                <div class="stat-bar">
+                  <span style="--stat-level: 97%"></span>
+                </div>
+              </div>
+
+              <blockquote class="fighter-quote">
+                “[INSERT QUOTE OR CATCHPHRASE]”
+              </blockquote>
+            </div>
+          </article>
+
+          <!-- FIGHTER 02 -->
+
+          <article class="fighter-card">
+            <div class="fighter-portrait">
+              <img
+                src="assets/images/placeholder.svg"
+                alt="Portrait of a groomsman"
+              >
+
+              <span class="fighter-number">
+                P2
+              </span>
+
+              <span class="fighter-role">
+                Groomsman
+              </span>
+            </div>
+
+            <div class="fighter-body">
+              <h3 class="fighter-name">
+                [GROOMSMAN NAME]
+              </h3>
+
+              <p class="fighter-meta">
+                <strong>ORIGIN REALM:</strong>
+                [CITY OR HOMETOWN]
+                <br>
+
+                <strong>YEARS KNOWN:</strong>
+                [NUMBER]
+                <br>
+
+                <strong>CLASS:</strong>
+                Chaos Specialist
+              </p>
+
+              <div class="move-list">
+                <p>
+                  <strong>SPECIAL MOVE:</strong>
+                  [EPIC TRAIT OR SKILL]
+                </p>
+
+                <p>
+                  <strong>ULTIMATE:</strong>
+                  [FUNNY ABILITY]
+                </p>
+
+                <p>
+                  <strong>WEAKNESS:</strong>
+                  [RUNNING JOKE]
+                </p>
+
+                <p>
+                  <strong>WEAPON:</strong>
+                  [FUNNY OBJECT]
+                </p>
+              </div>
+
+              <div class="fighter-story">
+                <strong>LEGENDARY ENCOUNTER:</strong>
+                Add the story everyone in the friend group
+                already knows but still wants to hear again.
+              </div>
+
+              <div class="stat-row">
+                <div class="stat-label">
+                  <span>LOYALTY</span>
+                  <span>98</span>
+                </div>
+
+                <div class="stat-bar">
+                  <span style="--stat-level: 98%"></span>
+                </div>
+              </div>
+
+              <div class="stat-row">
+                <div class="stat-label">
+                  <span>DANCE FLOOR</span>
+                  <span>91</span>
+                </div>
+
+                <div class="stat-bar">
+                  <span style="--stat-level: 91%"></span>
+                </div>
+              </div>
+
+              <div class="stat-row">
+                <div class="stat-label">
+                  <span>COMEDY</span>
+                  <span>96</span>
+                </div>
+
+                <div class="stat-bar">
+                  <span style="--stat-level: 96%"></span>
+                </div>
+              </div>
+
+              <blockquote class="fighter-quote">
+                “[INSERT QUOTE OR CATCHPHRASE]”
+              </blockquote>
+            </div>
+          </article>
+
+          <!-- FIGHTER 03 -->
+
+          <article class="fighter-card">
+            <div class="fighter-portrait">
+              <img
+                src="assets/images/placeholder.svg"
+                alt="Portrait of a groomsman"
+              >
+
+              <span class="fighter-number">
+                P3
+              </span>
+
+              <span class="fighter-role">
+                Groomsman
+              </span>
+            </div>
+
+            <div class="fighter-body">
+              <h3 class="fighter-name">
+                [GROOMSMAN NAME]
+              </h3>
+
+              <p class="fighter-meta">
+                <strong>ORIGIN REALM:</strong>
+                [CITY OR HOMETOWN]
+                <br>
+
+                <strong>YEARS KNOWN:</strong>
+                [NUMBER]
+                <br>
+
+                <strong>CLASS:</strong>
+                Logistics Warrior
+              </p>
+
+              <div class="move-list">
+                <p>
+                  <strong>SPECIAL MOVE:</strong>
+                  [EPIC TRAIT OR SKILL]
+                </p>
+
+                <p>
+                  <strong>ULTIMATE:</strong>
+                  [FUNNY ABILITY]
+                </p>
+
+                <p>
+                  <strong>WEAKNESS:</strong>
+                  [RUNNING JOKE]
+                </p>
+
+                <p>
+                  <strong>WEAPON:</strong>
+                  [FUNNY OBJECT]
+                </p>
+              </div>
+
+              <div class="fighter-story">
+                <strong>LEGENDARY ENCOUNTER:</strong>
+                Describe a trip, tournament, party, or
+                improbable situation you survived together.
+              </div>
+
+              <div class="stat-row">
+                <div class="stat-label">
+                  <span>LOYALTY</span>
+                  <span>97</span>
+                </div>
+
+                <div class="stat-bar">
+                  <span style="--stat-level: 97%"></span>
+                </div>
+              </div>
+
+              <div class="stat-row">
+                <div class="stat-label">
+                  <span>LOGISTICS</span>
+                  <span>99</span>
+                </div>
+
+                <div class="stat-bar">
+                  <span style="--stat-level: 99%"></span>
+                </div>
+              </div>
+
+              <div class="stat-row">
+                <div class="stat-label">
+                  <span>ENDURANCE</span>
+                  <span>92</span>
+                </div>
+
+                <div class="stat-bar">
+                  <span style="--stat-level: 92%"></span>
+                </div>
+              </div>
+
+              <blockquote class="fighter-quote">
+                “[INSERT QUOTE OR CATCHPHRASE]”
+              </blockquote>
+            </div>
+          </article>
+
+          <!-- FIGHTER 04 -->
+
+          <article class="fighter-card">
+            <div class="fighter-portrait">
+              <img
+                src="assets/images/placeholder.svg"
+                alt="Portrait of a member of the grooms party"
+              >
+
+              <span class="fighter-number">
+                P4
+              </span>
+
+              <span class="fighter-role">
+                Other Role
+              </span>
+            </div>
+
+            <div class="fighter-body">
+              <h3 class="fighter-name">
+                [NAME]
+              </h3>
+
+              <p class="fighter-meta">
+                <strong>ORIGIN REALM:</strong>
+                [CITY OR HOMETOWN]
+                <br>
+
+                <strong>YEARS KNOWN:</strong>
+                [NUMBER]
+                <br>
+
+                <strong>CLASS:</strong>
+                Ceremonial Guardian
+              </p>
+
+              <div class="move-list">
+                <p>
+                  <strong>SPECIAL MOVE:</strong>
+                  [EPIC TRAIT OR SKILL]
+                </p>
+
+                <p>
+                  <strong>ULTIMATE:</strong>
+                  [FUNNY ABILITY]
+                </p>
+
+                <p>
+                  <strong>WEAKNESS:</strong>
+                  [RUNNING JOKE]
+                </p>
+
+                <p>
+                  <strong>WEAPON:</strong>
+                  [FUNNY OBJECT]
+                </p>
+              </div>
+
+              <div class="fighter-story">
+                <strong>LEGENDARY ENCOUNTER:</strong>
+                Add the story that best explains this
+                person’s place in the wedding party.
+              </div>
+
+              <div class="stat-row">
+                <div class="stat-label">
+                  <span>LOYALTY</span>
+                  <span>100</span>
+                </div>
+
+                <div class="stat-bar">
+                  <span style="--stat-level: 100%"></span>
+                </div>
+              </div>
+
+              <div class="stat-row">
+                <div class="stat-label">
+                  <span>CEREMONY POWER</span>
+                  <span>95</span>
+                </div>
+
+                <div class="stat-bar">
+                  <span style="--stat-level: 95%"></span>
+                </div>
+              </div>
+
+              <div class="stat-row">
+                <div class="stat-label">
+                  <span>STYLE</span>
+                  <span>93</span>
+                </div>
+
+                <div class="stat-bar">
+                  <span style="--stat-level: 93%"></span>
+                </div>
+              </div>
+
+              <blockquote class="fighter-quote">
+                “[INSERT QUOTE OR CATCHPHRASE]”
+              </blockquote>
+            </div>
+          </article>
+        </div>
+
+        <section class="final-boss">
+          <p class="arcade-kicker">
+            FINAL BOSS
+          </p>
+
+          <h2>
+            The Groom
+          </h2>
+
+          <p class="final-boss-name">
+            Tim
+          </p>
+
+          <div class="move-list">
+            <p>
+              <strong>SPECIAL MOVE:</strong>
+              Overthinking every possible detail
+            </p>
+
+            <p>
+              <strong>ULTIMATE:</strong>
+              Building an unnecessary second wedding website
+            </p>
+
+            <p>
+              <strong>WEAKNESS:</strong>
+              Vintage audio equipment and complicated projects
+            </p>
+
+            <p>
+              <strong>WEAPON:</strong>
+              A highly organized spreadsheet
+            </p>
+          </div>
+
+          <div class="stat-row">
+            <div class="stat-label">
+              <span>DEVOTION</span>
+              <span>100</span>
+            </div>
+
+            <div class="stat-bar">
+              <span style="--stat-level: 100%"></span>
+            </div>
+          </div>
+
+          <div class="stat-row">
+            <div class="stat-label">
+              <span>WEBSITE PRODUCTION</span>
+              <span>99</span>
+            </div>
+
+            <div class="stat-bar">
+              <span style="--stat-level: 99%"></span>
+            </div>
+          </div>
+
+          <div class="stat-row">
+            <div class="stat-label">
+              <span>WEDDING READINESS</span>
+              <span>88</span>
+            </div>
+
+            <div class="stat-bar">
+              <span style="--stat-level: 88%"></span>
+            </div>
+          </div>
+        </section>
+
+        <section class="victory-screen">
+          <p class="victory-word">
+            Friendship
+          </p>
+
+          <h2>
+            The Groom's Party Wins
+          </h2>
+
+          <p>
+            No fatalities. No rage quitting.
+            Formalwear and hydration strongly recommended.
+          </p>
+
+          <div class="arcade-link-row">
+            <a
+              class="button"
+              href="wedding-party.html"
+            >
+              Return to Character Select
+            </a>
+
+            <a
+              class="button"
+              href="schedule.html"
+            >
+              Enter the Ceremony
+            </a>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer>
+      <div
+        class="badges"
+        aria-label="Retro web badges"
+      >
+        <span class="badge">
+          TOURNAMENT APPROVED
+        </span>
+
+        <span class="badge">
+          PLAYER ONE READY
+        </span>
+
+        <span class="badge">
+          NO CHEAT CODES
+        </span>
+
+        <span class="badge">
+          FRIENDSHIP WINS
+        </span>
+      </div>
+
+      <p>
+        You are contender number
+        <span
+          class="counter"
+          data-visitor-count
+        >
+          000000
+        </span>
+      </p>
+
+      <p class="small">
+        ©
+        <span data-year></span>
+
+        <span data-short-couple></span>
+
+        ·
+
+        <a
+          class="secret-link"
+          href="system-access.html"
+          aria-label="Restricted system access"
+        >
+          🦖
+        </a>
+      </p>
+    </footer>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+
+  <script>
+    /*
+      Page-specific arcade interaction.
+      The roster stays hidden until the visitor presses Start.
+    */
+
+    const startButton =
+      document.getElementById("start-tournament");
+
+    const introScreen =
+      document.getElementById("arcade-intro");
+
+    const rosterArea =
+      document.getElementById("roster-area");
+
+    if (startButton && introScreen && rosterArea) {
+      startButton.addEventListener("click", () => {
+        introScreen.hidden = true;
+        rosterArea.hidden = false;
+
+        rosterArea.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      });
+    }
+  </script>
+</body>
+</html>
