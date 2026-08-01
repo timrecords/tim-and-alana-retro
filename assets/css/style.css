@@ -591,3 +591,12 @@ body.theme-time {
   .time-circuit { grid-template-columns: 1fr; }
   .denied-grid { grid-template-columns: 1fr 1fr; }
 }
+
+.welcome-panel {
+  position: relative;
+  padding-top: 34px;
+}
+
+.welcome-panel .button {
+  margin: 6px;
+}
