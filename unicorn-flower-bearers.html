@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta
+    name="description"
+    content="Meet the four magical flower bearers in Tim and Alana's wedding party."
+  >
+  <title>The Unicorn Flower Meadow | Tim &amp; Alana</title>
+
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/config.js"></script>
+
+  <style>
+    body.theme-unicorn-meadow {
+      background:
+        radial-gradient(circle at 12% 18%, rgba(255,255,255,.95) 0 3px, transparent 4px),
+        radial-gradient(circle at 78% 22%, rgba(255,247,173,.95) 0 3px, transparent 4px),
+        radial-gradient(circle at 38% 78%, rgba(255,255,255,.9) 0 2px, transparent 3px),
+        linear-gradient(135deg, #ffd9f2, #e8ddff 42%, #c9f5ff 72%, #e7ffd1);
+      background-size: 90px 90px, 130px 130px, 110px 110px, auto;
+      color: #5a3c67;
+      font-family: "Trebuchet MS", Arial, sans-serif;
+    }
+
+    .theme-unicorn-meadow .site-wrap {
+      background: rgba(255, 253, 255, .95);
+      border: 5px ridge #ff9ed8;
+      box-shadow:
+        0 0 30px rgba(255, 143, 207, .5),
+        0 0 60px rgba(137, 222, 255, .25);
+    }
+
+    .theme-unicorn-meadow .hero {
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.75), transparent 20%),
+        linear-gradient(135deg, #ff8fd3, #b896ff 50%, #7ee8ff);
+      border-bottom-color: #fff2a6;
+    }
+
+    .theme-unicorn-meadow .logo {
+      color: #fff;
+      font-family: "Trebuchet MS", Arial, sans-serif;
+      font-size: clamp(2.3rem, 8vw, 5.4rem);
+      text-shadow:
+        3px 3px 0 #d850a7,
+        6px 6px 0 #7e5ac8,
+        0 0 18px rgba(255,255,255,.9);
+      transform: rotate(-2deg);
+    }
+
+    .theme-unicorn-meadow .tagline {
+      color: #fff;
+    }
+
+    .theme-unicorn-meadow .marquee {
+      background: #fff6ad;
+      color: #884b93;
+      border-color: #ff9ed8;
+    }
+
+    .theme-unicorn-meadow .retro-nav {
+      background: #8b67cd;
+      border-color: #fff4a4;
+    }
+
+    .theme-unicorn-meadow .retro-nav a {
+      background: linear-gradient(#fff, #ffdff2);
+      color: #6d3f83;
+      border-color: #fff;
+    }
+
+    .meadow-intro {
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      border: 5px double #ff9ed8;
+      background:
+        linear-gradient(rgba(255,255,255,.72), rgba(255,255,255,.72)),
+        repeating-linear-gradient(
+          0deg,
+          #d8ffd2 0 20px,
+          #d8ffd2 20px 22px,
+          #c8f7ff 22px 44px
+        );
+    }
+
+    .meadow-intro::before,
+    .meadow-intro::after {
+      content: "🦄";
+      position: absolute;
+      top: 20px;
+      font-size: clamp(2rem, 7vw, 4rem);
+      filter: drop-shadow(2px 2px 0 rgba(126,90,200,.35));
+    }
+
+    .meadow-intro::before { left: 22px; }
+    .meadow-intro::after { right: 22px; transform: scaleX(-1); }
+
+    .meadow-intro h2 {
+      margin: 8px 0;
+      color: #a23f92;
+      font: 700 clamp(2rem, 7vw, 4.4rem) Georgia, serif;
+      text-shadow: 2px 2px 0 #fff2a6;
+    }
+
+    .flower-line {
+      color: #d38b00;
+      font-size: 1.5rem;
+      letter-spacing: 8px;
+    }
+
+    .petal-note {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 7px 11px;
+      background: #fff9c9;
+      border: 2px dashed #dd70bb;
+      border-radius: 14px;
+      color: #6b3f78;
+      font-weight: bold;
+    }
+
+    .flower-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .flower-card {
+      position: relative;
+      overflow: hidden;
+      padding: 14px;
+      background:
+        radial-gradient(circle at top right, rgba(255,255,255,.95), transparent 34%),
+        #fff;
+      border: 4px ridge #ff9ed8;
+      border-radius: 26px;
+      box-shadow: 7px 7px 0 rgba(127, 73, 158, .2);
+      transform: rotate(var(--tilt, -1deg));
+    }
+
+    .flower-card::before {
+      content: "🌸";
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      font-size: 1.7rem;
+      animation: petal-bob 1.4s ease-in-out infinite alternate;
+    }
+
+    .flower-card:nth-child(2)::before { content: "🌼"; }
+    .flower-card:nth-child(3)::before { content: "🌷"; }
+    .flower-card:nth-child(4)::before { content: "🪻"; }
+
+    @keyframes petal-bob {
+      from { transform: translateY(0) rotate(-5deg); }
+      to { transform: translateY(5px) rotate(8deg); }
+    }
+
+    .flower-photo {
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      border: 5px solid #fff;
+      outline: 3px solid #c686ec;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #ffe2f4, #dff8ff);
+    }
+
+    .flower-photo img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .flower-card h3 {
+      margin: 14px 0 4px;
+      color: #a13f91;
+      font: 700 2rem Georgia, serif;
+      text-align: center;
+    }
+
+    .meadow-title {
+      margin: 0 0 12px;
+      color: #7651a7;
+      text-align: center;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .flower-facts {
+      padding: 12px;
+      background:
+        linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)),
+        #fff7bd;
+      border: 2px dashed #d965b3;
+      border-radius: 15px;
+      color: #56355f;
+    }
+
+    .flower-facts p {
+      margin: 7px 0;
+    }
+
+    .rainbow-meter {
+      height: 20px;
+      overflow: hidden;
+      background: #fff;
+      border: 3px inset #dba2ce;
+      border-radius: 12px;
+    }
+
+    .rainbow-meter span {
+      display: block;
+      width: var(--level, 98%);
+      height: 100%;
+      background:
+        repeating-linear-gradient(
+          90deg,
+          #ff78bc 0 13px,
+          #ffbc66 13px 26px,
+          #ffe66b 26px 39px,
+          #8ee39f 39px 52px,
+          #7edcff 52px 65px,
+          #af8bf4 65px 78px
+        );
+    }
+
+    .meadow-map {
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.55), transparent 20%),
+        linear-gradient(180deg, #d7f7ff, #dff8d4 58%, #bceaa9);
+      color: #4f3d5a;
+      border: 5px ridge #9fd287;
+    }
+
+    .meadow-map h2 {
+      color: #8c4a94;
+      font-family: Georgia, serif;
+    }
+
+    .meadow-step {
+      margin: 12px 0;
+      padding: 12px 14px;
+      background: rgba(255,255,255,.72);
+      border-left: 7px solid #ff86c4;
+      border-radius: 10px;
+    }
+
+    .meadow-step:nth-child(3) { border-left-color: #f0c34a; }
+    .meadow-step:nth-child(4) { border-left-color: #8fd69a; }
+
+    .meadow-finale {
+      text-align: center;
+      background:
+        linear-gradient(135deg, #fff7c1, #ffd8ef, #d7d0ff, #cef7ff);
+      border: 5px double #a869cf;
+    }
+
+    .meadow-finale h2 {
+      color: #9c3f93;
+      font: 700 clamp(2rem, 6vw, 4rem) Georgia, serif;
+    }
+
+    .unicorn-badge {
+      display: inline-block;
+      padding: 4px 8px;
+      background: #ffe5f5;
+      color: #6d3f83;
+      border: 2px outset #fff;
+      font: bold 10px Arial, sans-serif;
+    }
+
+    @media (max-width: 720px) {
+      .flower-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .meadow-intro::before,
+      .meadow-intro::after {
+        position: static;
+        display: inline-block;
+        margin: 0 8px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .flower-card::before {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+
+<body class="theme-unicorn-meadow">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="site-wrap">
+    <div class="browser-bar">
+      UNICORN MEADOW NETWORK™ — PETAL SUPPLY: FULL — MAGIC: ONLINE
+    </div>
+
+    <header class="hero">
+      <h1 class="logo">THE UNICORN FLOWER MEADOW</h1>
+
+      <p class="tagline">
+        <span data-date-display>JUNE 12, 2027</span>
+        ★
+        <span data-city>SAN FRANCISCO</span>
+      </p>
+
+      <p class="blink">
+        ★ FOUR MAGICAL FLOWER BEARERS HAVE ARRIVED ★
+      </p>
+    </header>
+
+    <div class="marquee" aria-label="Flower bearer announcement">
+      <span>
+        🌸 PETALS READY 🌈 UNICORNS APPROVED ✨ AISLE MAGIC IN PROGRESS 🌼
+      </span>
+    </div>
+
+    <nav class="retro-nav" aria-label="Main navigation" data-nav></nav>
+
+    <main id="main">
+      <section class="panel meadow-intro">
+        <div class="flower-line">🌸 ✦ 🌼 ✦ 🌷</div>
+
+        <h2>The Magical Flower Bearers</h2>
+
+        <p>
+          Four very important nieces have been chosen to fill the aisle
+          with flowers, smiles, sparkles, and just the right amount of
+          unicorn magic.
+        </p>
+
+        <p>
+          Their mission is simple: carry the blooms, scatter the petals,
+          and make the ceremony at least 300% more adorable.
+        </p>
+
+        <p class="petal-note">
+          Official dress code: twirl-ready and flower-friendly.
+        </p>
+      </section>
+
+      <div class="flower-grid">
+        <article class="flower-card" style="--tilt:-1deg">
+          <div class="flower-photo">
+            <img
+              src="assets/images/placeholder.svg"
+              alt="Portrait of [NAME 1]"
+            >
+          </div>
+
+          <h3>[NAME 1]</h3>
+          <p class="meadow-title">Keeper of the Pink Petals</p>
+
+          <div class="flower-facts">
+            <p><strong>Flower Mission:</strong> [AISLE OR BOUQUET DUTY]</p>
+            <p><strong>Unicorn Power:</strong> [CUTE PERSONALITY TRAIT]</p>
+            <p><strong>Favorite Bloom:</strong> [FLOWER OR COLOR]</p>
+            <p><strong>Known For:</strong> [ADORABLE OR FUNNY STORY]</p>
+          </div>
+
+          <p><strong>Rainbow Sparkle</strong></p>
+          <div class="rainbow-meter" aria-label="Rainbow sparkle 100 percent">
+            <span style="--level:100%"></span>
+          </div>
+        </article>
+
+        <article class="flower-card" style="--tilt:1.1deg">
+          <div class="flower-photo">
+            <img
+              src="assets/images/placeholder.svg"
+              alt="Portrait of [NAME 2]"
+            >
+          </div>
+
+          <h3>[NAME 2]</h3>
+          <p class="meadow-title">Guardian of the Golden Blooms</p>
+
+          <div class="flower-facts">
+            <p><strong>Flower Mission:</strong> [AISLE OR BOUQUET DUTY]</p>
+            <p><strong>Unicorn Power:</strong> [CUTE PERSONALITY TRAIT]</p>
+            <p><strong>Favorite Bloom:</strong> [FLOWER OR COLOR]</p>
+            <p><strong>Known For:</strong> [ADORABLE OR FUNNY STORY]</p>
+          </div>
+
+          <p><strong>Petal Power</strong></p>
+          <div class="rainbow-meter" aria-label="Petal power 99 percent">
+            <span style="--level:99%"></span>
+          </div>
+        </article>
+
+        <article class="flower-card" style="--tilt:1deg">
+          <div class="flower-photo">
+            <img
+              src="assets/images/placeholder.svg"
+              alt="Portrait of [NAME 3]"
+            >
+          </div>
+
+          <h3>[NAME 3]</h3>
+          <p class="meadow-title">Princess of the Rainbow Garden</p>
+
+          <div class="flower-facts">
+            <p><strong>Flower Mission:</strong> [AISLE OR BOUQUET DUTY]</p>
+            <p><strong>Unicorn Power:</strong> [CUTE PERSONALITY TRAIT]</p>
+            <p><strong>Favorite Bloom:</strong> [FLOWER OR COLOR]</p>
+            <p><strong>Known For:</strong> [ADORABLE OR FUNNY STORY]</p>
+          </div>
+
+          <p><strong>Twirling Skill</strong></p>
+          <div class="rainbow-meter" aria-label="Twirling skill 98 percent">
+            <span style="--level:98%"></span>
+          </div>
+        </article>
+
+        <article class="flower-card" style="--tilt:-1.3deg">
+          <div class="flower-photo">
+            <img
+              src="assets/images/placeholder.svg"
+              alt="Portrait of [NAME 4]"
+            >
+          </div>
+
+          <h3>[NAME 4]</h3>
+          <p class="meadow-title">Protector of the Lavender Meadow</p>
+
+          <div class="flower-facts">
+            <p><strong>Flower Mission:</strong> [AISLE OR BOUQUET DUTY]</p>
+            <p><strong>Unicorn Power:</strong> [CUTE PERSONALITY TRAIT]</p>
+            <p><strong>Favorite Bloom:</strong> [FLOWER OR COLOR]</p>
+            <p><strong>Known For:</strong> [ADORABLE OR FUNNY STORY]</p>
+          </div>
+
+          <p><strong>Cuteness Level</strong></p>
+          <div class="rainbow-meter" aria-label="Cuteness level 100 percent">
+            <span style="--level:100%"></span>
+          </div>
+        </article>
+      </div>
+
+      <section class="panel meadow-map">
+        <h2>The Flower Bearer Quest</h2>
+
+        <div class="meadow-step">
+          <h3>1. Gather the Blooms</h3>
+          <p>
+            Collect petals, bouquets, baskets, and all approved
+            magical flower supplies.
+          </p>
+        </div>
+
+        <div class="meadow-step">
+          <h3>2. Enter the Rainbow Meadow</h3>
+          <p>
+            Walk down the aisle with confidence, smiles, and
+            excellent flower-bearing form.
+          </p>
+        </div>
+
+        <div class="meadow-step">
+          <h3>3. Scatter the Magic</h3>
+          <p>
+            Fill the ceremony path with petals and leave a trail
+            of joy for Tim and Alana.
+          </p>
+        </div>
+      </section>
+
+      <section class="panel meadow-finale">
+        <h2>The Meadow Is Ready</h2>
+
+        <p>
+          The flowers will bloom, the unicorns will sparkle,
+          and four wonderful nieces will make the aisle unforgettable.
+        </p>
+
+        <p>
+          <a class="button" href="wedding-party.html">
+            RETURN TO THE CAST
+          </a>
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <div class="badges">
+        <span class="unicorn-badge">UNICORN APPROVED</span>
+        <span class="unicorn-badge">PETALS LOADED</span>
+        <span class="unicorn-badge">100% MAGICAL</span>
+      </div>
+
+      <p>
+        You are meadow visitor
+        <span class="counter" data-visitor-count>000000</span>
+      </p>
+
+      <p class="small">
+        © <span data-year></span> <span data-short-couple></span>
+      </p>
+    </footer>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
