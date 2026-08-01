@@ -600,3 +600,34 @@ body.theme-time {
 .welcome-panel .button {
   margin: 6px;
 }
+
+.new-badge {
+  position: absolute;
+  top: -14px;
+  right: 18px;
+  padding: 7px 11px;
+  background: #fff600;
+  color: #ff006e;
+  border: 3px outset #fff9a8;
+  box-shadow: 3px 3px 0 #000;
+  font: bold 18px Impact, "Arial Black", sans-serif;
+  letter-spacing: 1px;
+  transform: rotate(8deg);
+  animation: new-badge-pulse 0.8s steps(2, end) infinite;
+}
+
+@keyframes new-badge-pulse {
+  0% {
+    transform: rotate(8deg) scale(1);
+  }
+
+  50% {
+    transform: rotate(-5deg) scale(1.14);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .new-badge {
+    animation: none;
+  }
+}
