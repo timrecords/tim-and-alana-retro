@@ -94,7 +94,7 @@
   const year = document.querySelector("[data-year]");
   if (year) year.textContent = new Date().getFullYear();
 })();
-
+(function () {
   const storyLightbox =
     document.getElementById("story-lightbox");
 
@@ -110,11 +110,28 @@
   const storyThumbnails =
     document.querySelectorAll(".story-thumbnail");
 
+  /*
+    Stop here on pages that do not contain the story gallery.
+  */
+  if (
+    !storyLightbox ||
+    !storyLightboxImage ||
+    !storyLightboxCaption ||
+    !storyLightboxClose ||
+    storyThumbnails.length === 0
+  ) {
+    return;
+  }
+
   let lastFocusedThumbnail = null;
 
   function openStoryLightbox(thumbnail) {
     const thumbnailImage =
       thumbnail.querySelector("img");
+
+    if (!thumbnailImage) {
+      return;
+    }
 
     lastFocusedThumbnail = thumbnail;
 
@@ -139,6 +156,7 @@
 
     storyLightboxImage.src = "";
     storyLightboxImage.alt = "";
+    storyLightboxCaption.textContent = "";
 
     document.body.style.overflow = "";
 
@@ -158,18 +176,24 @@
     closeStoryLightbox
   );
 
-  storyLightbox.addEventListener("click", (event) => {
-    if (event.target === storyLightbox) {
-      closeStoryLightbox();
+  storyLightbox.addEventListener(
+    "click",
+    (event) => {
+      if (event.target === storyLightbox) {
+        closeStoryLightbox();
+      }
     }
-  });
+  );
 
-  document.addEventListener("keydown", (event) => {
-    if (
-      event.key === "Escape" &&
-      !storyLightbox.hidden
-    ) {
-      closeStoryLightbox();
+  document.addEventListener(
+    "keydown",
+    (event) => {
+      if (
+        event.key === "Escape" &&
+        !storyLightbox.hidden
+      ) {
+        closeStoryLightbox();
+      }
     }
-  });
-</script>
+  );
+})();
