@@ -95,7 +95,6 @@
   if (year) year.textContent = new Date().getFullYear();
 })();
 
-<script>
   const storyLightbox =
     document.getElementById("story-lightbox");
 
