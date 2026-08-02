@@ -36,7 +36,7 @@ window.WEDDING_CONFIG = {
     ["TRAVEL", "travel.html"],
     ["FAQ", "faq.html"],
     ["REGISTRY", "registry.html"],
-    ["RSVP", "rsvp.html"]
+    ["RSVP", "rsvp.html"],
     ["CAT COUNTDOWN", "cats.html"],
   ]
 };
