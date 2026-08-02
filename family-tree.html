@@ -1,102 +1,663 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>The Entwined Family Trees | Tim &amp; Alana</title>
-<link rel="stylesheet" href="assets/css/style.css">
-<script src="assets/js/config.js"></script>
-<style>
-body{background:linear-gradient(rgba(14,26,17,.82),rgba(14,26,17,.92)),repeating-linear-gradient(28deg,#24351f 0 20px,#172316 20px 40px);color:#efe7d0;font-family:Georgia,serif}
-.site-wrap{background:rgba(19,29,18,.97);border:5px ridge #8f6a34;box-shadow:0 0 34px rgba(174,143,72,.35)}
-.hero{background:radial-gradient(circle at center,rgba(194,156,72,.22),transparent 46%),linear-gradient(#35452e,#121a11);border-bottom-color:#9b743c}
-.logo{color:#d7b86f!important;font-family:Georgia,serif!important;text-shadow:3px 3px 0 #4f351b,6px 6px 0 #000!important;transform:none!important}
-.tagline{color:#efe7d0!important}.marquee{background:#0f170f;color:#d7b86f;border-color:#8f6a34}.retro-nav{background:#263623;border-color:#8f6a34}.retro-nav a{background:linear-gradient(#d5bd81,#7c5a2c);color:#130f08;border-color:#eedcb0}
-.forest-intro{text-align:center;background:#1a2718;border:5px double #9b743c}.forest-intro h2,.tree-title,.forest-end h2{color:#d7b86f;font-family:Georgia,serif}.forest-symbol{font-size:3rem;letter-spacing:12px}
-.union{margin:28px auto;max-width:720px;padding:20px;text-align:center;background:#182117;border:5px ridge #b18a49;box-shadow:7px 7px 0 #090d08}.union h2{margin:0;color:#f0d286;font:700 clamp(2rem,7vw,4rem) Georgia,serif}
-.trees{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:start}.tree{padding:18px;background:#162016;border:5px ridge #7d5a31;box-shadow:8px 8px 0 #080b07}.tree-title{text-align:center;font-size:2rem;margin:0 0 18px}
-.generation{margin:22px 0}.generation-label{display:inline-block;margin-bottom:10px;padding:4px 8px;background:#d7b86f;color:#1a1309;border:2px outset #f1dfad;font:bold 11px Arial,sans-serif;text-transform:uppercase}
-.branch-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px}.branch{padding:12px;background:linear-gradient(#e6d5aa,#cbb57c);color:#2d2114;border:4px ridge #8f6a34;box-shadow:4px 4px 0 #080b07;text-align:center}.branch h3,.branch h4{margin:0 0 5px;color:#4d321d}.branch p{margin:4px 0;font-size:.88rem}.primary{background:linear-gradient(#f1dfad,#d0bc83)}.family{background:linear-gradient(#dce6c3,#b7c994);border-color:#70804e}.memory{background:linear-gradient(#ded5c3,#bfb3a0);border-color:#776c59}
-.children{margin-top:7px;padding:7px;background:rgba(255,255,255,.45);border:2px dashed #7e6a47;text-align:left;font-size:.84rem}.tag{display:inline-block;margin-top:5px;padding:3px 7px;border-radius:10px;background:#6b6255;color:#fff;font:bold 10px Arial,sans-serif}.living{background:#6e8451}
-.extended{margin-top:28px;padding:18px;background:#171f15;border:5px double #8f6a34}.extended h2{text-align:center;color:#d7b86f}.extended-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.placeholder{padding:12px;background:#202b1d;border:2px dashed #9e7c45}
-.forest-end{text-align:center;background:#121a11;border:5px double #9b743c}
-@media(max-width:900px){.trees,.extended-grid{grid-template-columns:1fr}}@media(max-width:560px){.branch-row{grid-template-columns:1fr}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta
+    name="description"
+    content="Tim and Alana's family tree, presented as an enchanted genealogy tapestry."
+  >
+  <title>The Enchanted Family Tapestry | Tim &amp; Alana</title>
+
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/config.js"></script>
+
+  <style>
+    body.theme-tapestry {
+      margin: 0;
+      background:
+        radial-gradient(circle at 20% 15%, rgba(255,255,255,.04) 0 2px, transparent 3px),
+        linear-gradient(rgba(13, 8, 19, .88), rgba(13, 8, 19, .96)),
+        repeating-linear-gradient(
+          45deg,
+          #2c1835 0 22px,
+          #1a1022 22px 44px
+        );
+      color: #efe5cf;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .theme-tapestry .site-wrap {
+      width: min(1320px, calc(100% - 18px));
+      background: #160f1d;
+      border: 6px ridge #8b6a3c;
+      box-shadow:
+        0 0 34px rgba(182, 141, 74, .36),
+        inset 0 0 55px rgba(255,255,255,.02);
+    }
+
+    .theme-tapestry .hero {
+      background:
+        radial-gradient(circle at center, rgba(172, 129, 62, .2), transparent 46%),
+        linear-gradient(180deg, #37213f, #17101d);
+      border-bottom-color: #9e7842;
+    }
+
+    .theme-tapestry .logo {
+      color: #d8b66f;
+      font-family: Georgia, "Times New Roman", serif;
+      text-shadow:
+        3px 3px 0 #50371e,
+        6px 6px 0 #000;
+      transform: none;
+    }
+
+    .theme-tapestry .tagline {
+      color: #efe5cf;
+    }
+
+    .theme-tapestry .marquee {
+      background: #0e0913;
+      color: #d8b66f;
+      border-color: #8b6a3c;
+    }
+
+    .theme-tapestry .retro-nav {
+      background: #28182f;
+      border-color: #8b6a3c;
+    }
+
+    .theme-tapestry .retro-nav a {
+      background: linear-gradient(#d9bc7e, #7f5b2d);
+      color: #170e0a;
+      border-color: #ead8aa;
+    }
+
+    .tapestry-intro {
+      text-align: center;
+      border: 5px double #8b6a3c;
+      background:
+        linear-gradient(rgba(255,255,255,.025), rgba(255,255,255,.025)),
+        #201426;
+    }
+
+    .tapestry-intro h2 {
+      color: #d8b66f;
+      font: 700 clamp(2rem, 6vw, 4.2rem) Georgia, serif;
+      text-shadow: 3px 3px 0 #4c321b;
+    }
+
+    .tapestry-note {
+      display: inline-block;
+      padding: 6px 10px;
+      background: #2f2136;
+      border: 2px solid #8b6a3c;
+      color: #d9ccb4;
+      font-size: .88rem;
+    }
+
+    .family-tapestry {
+      position: relative;
+      margin-top: 24px;
+      min-height: 1500px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 15%, rgba(101, 72, 43, .15), transparent 36%),
+        repeating-linear-gradient(
+          0deg,
+          rgba(255,255,255,.014) 0 2px,
+          transparent 2px 6px
+        ),
+        #1b111f;
+      border: 8px ridge #8b6a3c;
+      box-shadow:
+        inset 0 0 70px rgba(0,0,0,.7),
+        0 0 26px rgba(178, 135, 69, .22);
+    }
+
+    .tree-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .tree-svg path {
+      fill: none;
+      stroke: #76502d;
+      stroke-width: 10;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(2px 3px 0 rgba(0,0,0,.42));
+    }
+
+    .tree-svg .thin {
+      stroke-width: 6;
+    }
+
+    .tree-svg .root {
+      stroke-width: 16;
+    }
+
+    .tree-svg .gold {
+      stroke: #a67c3e;
+      stroke-width: 5;
+    }
+
+    .family-side-label {
+      position: absolute;
+      top: 22px;
+      z-index: 3;
+      padding: 8px 14px;
+      background: #2a1930;
+      color: #d8b66f;
+      border: 3px ridge #8b6a3c;
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .family-side-label.alana {
+      left: 28px;
+    }
+
+    .family-side-label.tim {
+      right: 28px;
+    }
+
+    .person {
+      position: absolute;
+      z-index: 4;
+      width: 142px;
+      text-align: center;
+      transform: translate(-50%, -50%);
+    }
+
+    .person-card {
+      position: relative;
+      padding: 8px 7px 10px;
+      background:
+        linear-gradient(180deg, #d8c59b, #b79d68);
+      color: #2a1c12;
+      border: 4px ridge #7a572e;
+      box-shadow:
+        5px 5px 0 rgba(0,0,0,.52),
+        inset 0 0 14px rgba(255,255,255,.22);
+    }
+
+    .person-card::before {
+      content: "";
+      position: absolute;
+      inset: 5px;
+      border: 1px solid rgba(71, 48, 26, .44);
+      pointer-events: none;
+    }
+
+    .person h3 {
+      margin: 0;
+      color: #49311b;
+      font-size: 1rem;
+      line-height: 1.1;
+    }
+
+    .person p {
+      margin: 4px 0 0;
+      font-size: .72rem;
+      line-height: 1.2;
+    }
+
+    .person.primary .person-card {
+      background:
+        linear-gradient(180deg, #ead7a5, #c7a968);
+      border-color: #ad8040;
+    }
+
+    .person.memory .person-card {
+      background:
+        linear-gradient(180deg, #d1c8b5, #aaa08d);
+      border-color: #6c6254;
+    }
+
+    .person.living .person-card {
+      background:
+        linear-gradient(180deg, #dce5bc, #b4c180);
+      border-color: #647348;
+    }
+
+    .person.union {
+      width: 210px;
+    }
+
+    .person.union .person-card {
+      padding: 14px 12px;
+      background:
+        linear-gradient(180deg, #f0d693, #bb8644);
+      border: 5px ridge #c49a55;
+      box-shadow:
+        0 0 18px rgba(220, 179, 97, .35),
+        7px 7px 0 rgba(0,0,0,.55);
+    }
+
+    .person.union h3 {
+      font-size: 1.5rem;
+    }
+
+    .person.group {
+      width: 168px;
+    }
+
+    .person.group .person-card {
+      background:
+        linear-gradient(180deg, #d9e0be, #aebd87);
+      border-color: #6d7d4e;
+    }
+
+    .person.small {
+      width: 122px;
+    }
+
+    .person.small h3 {
+      font-size: .88rem;
+    }
+
+    .person.small p {
+      font-size: .66rem;
+    }
+
+    .person.placeholder .person-card {
+      background:
+        linear-gradient(180deg, #b9a98e, #8e7c63);
+      border-style: dashed;
+      opacity: .88;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin: 18px 0 0;
+    }
+
+    .legend span {
+      display: inline-block;
+      padding: 5px 8px;
+      border: 2px outset #c7ad77;
+      background: #d9c69c;
+      color: #2c1d12;
+      font: bold 11px Arial, sans-serif;
+    }
+
+    .family-footer {
+      text-align: center;
+      border: 5px double #8b6a3c;
+      background: #1c1221;
+    }
+
+    .family-footer h2 {
+      color: #d8b66f;
+      font-family: Georgia, serif;
+    }
+
+    @media (max-width: 1000px) {
+      .family-tapestry {
+        min-height: 2450px;
+      }
+
+      .tree-svg {
+        display: none;
+      }
+
+      .family-side-label {
+        position: static;
+        display: block;
+        width: fit-content;
+        margin: 18px auto;
+      }
+
+      .person {
+        position: static;
+        width: min(92%, 420px) !important;
+        margin: 14px auto;
+        transform: none;
+      }
+    }
+  </style>
 </head>
-<body>
-<a class="skip-link" href="#main">Skip to content</a>
-<div class="site-wrap">
-<div class="browser-bar">ANCIENT FAMILY FOREST™ — ROOT SYSTEMS CONNECTED</div>
-<header class="hero"><h1 class="logo">THE ENTWINED FAMILY TREES</h1><p class="tagline"><span data-date-display></span> ★ <span data-city></span></p><p class="blink">★ TWO GREAT FORESTS GROW TOGETHER ★</p></header>
-<div class="marquee"><span>🌿 ROOTS REMEMBER ★ BRANCHES GROW ★ TWO FAMILIES BECOME ONE 🌿</span></div>
-<nav class="retro-nav" data-nav></nav>
-<main id="main">
-<section class="panel forest-intro"><div class="forest-symbol">🌳 ✦ 🌳</div><h2>Two Ancient Trees, One New Forest</h2><p>Alana's family tree grows on one side, Tim's on the other, and their roots meet at the center.</p></section>
-<section class="union"><h2>Alana ✦ Tim</h2><p>The place where both family trees become one.</p></section>
 
-<div class="trees">
-<section class="tree">
-<h2 class="tree-title">Alana's Family Tree</h2>
-<div class="generation"><span class="generation-label">Grandparents</span><div class="branch-row">
-<article class="branch memory"><h3>[Sandy's Parent 1]</h3><p>Grandparent</p><span class="tag">Add living or remembrance note</span></article>
-<article class="branch memory"><h3>[Sandy's Parent 2]</h3><p>Grandparent</p><span class="tag">Add living or remembrance note</span></article>
-<article class="branch memory"><h3>[Judy's Parent 1]</h3><p>Grandparent</p><span class="tag">Add living or remembrance note</span></article>
-<article class="branch memory"><h3>[Judy's Parent 2]</h3><p>Grandparent</p><span class="tag">Add living or remembrance note</span></article>
-</div></div>
-<div class="generation"><span class="generation-label">Parents</span><div class="branch-row">
-<article class="branch primary"><h3>Sandy</h3><p>Alana's parent</p></article>
-<article class="branch primary"><h3>Judy</h3><p>Alana's parent</p></article>
-</div></div>
-<div class="generation"><span class="generation-label">Siblings and Family</span><div class="branch-row">
-<article class="branch family"><h3>Lauren &amp; Adam</h3><p>Sister and brother-in-law</p><div class="children"><strong>Children:</strong><br>Elliot<br>Coby</div></article>
-<article class="branch primary"><h3>Alana</h3><p>One half of the wedding</p></article>
-</div></div>
-<div class="generation"><span class="generation-label">Aunts, Uncles, and Cousins</span><div class="branch-row">
-<article class="branch"><h4>[Sandy's Sibling]</h4><p>[Spouse]</p><div class="children"><strong>Children:</strong><br>[Cousin names]</div></article>
-<article class="branch"><h4>[Sandy's Sibling]</h4><p>[Spouse]</p><div class="children"><strong>Children:</strong><br>[Cousin names]</div></article>
-<article class="branch"><h4>[Judy's Sibling]</h4><p>[Spouse]</p><div class="children"><strong>Children:</strong><br>[Cousin names]</div></article>
-<article class="branch"><h4>[Judy's Sibling]</h4><p>[Spouse]</p><div class="children"><strong>Children:</strong><br>[Cousin names]</div></article>
-</div></div>
-</section>
+<body class="theme-tapestry">
+  <a class="skip-link" href="#main">Skip to content</a>
 
-<section class="tree">
-<h2 class="tree-title">Tim's Family Tree</h2>
-<div class="generation"><span class="generation-label">Grandparents</span><div class="branch-row">
-<article class="branch memory"><h3>Thomas</h3><p>Paternal grandfather</p><span class="tag">Remembered with love</span></article>
-<article class="branch memory"><h3>Marian</h3><p>Paternal grandmother</p><span class="tag">Remembered with love</span></article>
-<article class="branch primary"><h3>Maree</h3><p>Maternal grandmother</p><span class="tag living">Still with us</span></article>
-<article class="branch memory"><h3>Pat</h3><p>Maternal grandfather</p><span class="tag">Remembered with love</span></article>
-</div></div>
-<div class="generation"><span class="generation-label">Parents</span><div class="branch-row">
-<article class="branch primary"><h3>Art</h3><p>Tim's father</p></article>
-<article class="branch primary"><h3>Patricia</h3><p>Tim's mother</p></article>
-</div></div>
-<div class="generation"><span class="generation-label">Siblings and Their Families</span><div class="branch-row">
-<article class="branch family"><h3>Elizabeth &amp; Dustin</h3><p>Oldest sister and brother-in-law</p><div class="children"><strong>Children:</strong><br>Lincoln<br>Lillian<br>Lucy</div></article>
-<article class="branch family"><h3>Catherine &amp; Zach</h3><p>Middle sister and brother-in-law</p><div class="children"><strong>Children:</strong><br>Camryn<br>Macie</div></article>
-<article class="branch family"><h3>Josee &amp; Chance</h3><p>Youngest sister and brother-in-law</p></article>
-<article class="branch primary"><h3>Tim</h3><p>One half of the wedding</p></article>
-</div></div>
-<div class="generation"><span class="generation-label">Patricia's Siblings</span><div class="branch-row">
-<article class="branch family"><h3>David &amp; Tracy</h3><p>Uncle and aunt</p><div class="children"><strong>Children:</strong><br>[Add cousin names]</div></article>
-<article class="branch family"><h3>Dee &amp; Bart</h3><p>Aunt and uncle</p><div class="children"><strong>Children:</strong><br>[Add cousin names]</div></article>
-</div></div>
-<div class="generation"><span class="generation-label">Art's Siblings</span><div class="branch-row">
-<article class="branch family"><h3>Pat &amp; Elton</h3><p>Aunt or uncle and spouse</p><div class="children"><strong>Children:</strong><br>[Add cousin names]</div></article>
-<article class="branch family"><h3>Mike &amp; Melanie</h3><p>Uncle and aunt</p><div class="children"><strong>Children:</strong><br>[Add cousin names]</div></article>
-</div></div>
-</section>
-</div>
+  <div class="site-wrap">
+    <div class="browser-bar">
+      ENCHANTED GENEALOGY ARCHIVE™ — TAPESTRY RESTORED
+    </div>
 
-<section class="extended"><h2>The Wider Forest</h2><div class="extended-grid">
-<div class="placeholder"><h3>Alana's Extended Branches</h3><p>Add Sandy's and Judy's siblings, spouses, and children here.</p></div>
-<div class="placeholder"><h3>Tim's Extended Branches</h3><p>Add the children of David and Tracy, Dee and Bart, Pat and Elton, and Mike and Melanie here.</p></div>
-</div></section>
+    <header class="hero">
+      <h1 class="logo">THE ENCHANTED FAMILY TAPESTRY</h1>
 
-<section class="panel forest-end"><h2>The Roots Meet Here</h2><p>These trees hold generations of stories. At the wedding, their branches gather and begin growing together.</p><p><a class="button" href="index.html">RETURN TO THE MAIN SITE</a></p></section>
-</main>
-<footer><div class="badges"><span class="badge">ROOTS CONNECTED</span><span class="badge">BRANCHES GROWING</span><span class="badge">FOREST APPROVED</span></div><p>You are forest visitor <span class="counter" data-visitor-count>000000</span></p><p class="small">© <span data-year></span> <span data-short-couple></span></p></footer>
-</div>
-<script src="assets/js/main.js"></script>
+      <p class="tagline">
+        <span data-date-display>JUNE 12, 2027</span>
+        ★
+        <span data-city>SAN FRANCISCO</span>
+      </p>
+
+      <p class="blink">
+        ★ TWO BLOODLINES, ONE NEW BRANCH ★
+      </p>
+    </header>
+
+    <div class="marquee">
+      <span>
+        ✦ ANCESTORS ABOVE ✦ BRANCHES BETWEEN ✦ ROOTS ENTWINED BELOW ✦
+      </span>
+    </div>
+
+    <nav class="retro-nav" data-nav></nav>
+
+    <main id="main">
+      <section class="panel tapestry-intro">
+        <h2>The Family Tapestry</h2>
+
+        <p>
+          An original enchanted genealogy design inspired by old magical
+          family records: names set into parchment medallions, branches
+          running between generations, and both family lines joining at
+          Tim and Alana.
+        </p>
+
+        <p class="tapestry-note">
+          Replace the remaining placeholders as the extended family list is completed.
+        </p>
+      </section>
+
+      <section class="family-tapestry" aria-label="Family tree connecting Alana and Tim">
+        <div class="family-side-label alana">Alana's Line</div>
+        <div class="family-side-label tim">Tim's Line</div>
+
+        <svg
+          class="tree-svg"
+          viewBox="0 0 1200 1500"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <!-- central trunk and roots -->
+          <path class="root" d="M600 1410 C600 1260 600 1120 600 970" />
+          <path class="root" d="M600 1410 C500 1430 430 1460 360 1490" />
+          <path class="root" d="M600 1410 C700 1430 770 1460 840 1490" />
+
+          <!-- left trunk -->
+          <path d="M600 970 C500 900 420 830 350 740" />
+          <path d="M350 740 C300 650 255 540 230 430" />
+          <path d="M350 740 C390 650 420 540 430 430" />
+
+          <!-- right trunk -->
+          <path d="M600 970 C700 900 780 830 850 740" />
+          <path d="M850 740 C805 650 770 540 760 430" />
+          <path d="M850 740 C910 650 950 540 970 430" />
+
+          <!-- Alana grandparents branches -->
+          <path class="thin" d="M230 430 C190 340 150 255 120 175" />
+          <path class="thin" d="M230 430 C250 335 280 250 305 175" />
+          <path class="thin" d="M430 430 C390 335 365 250 370 175" />
+          <path class="thin" d="M430 430 C470 335 515 250 535 175" />
+
+          <!-- Tim grandparents branches -->
+          <path class="thin" d="M760 430 C710 330 680 245 665 175" />
+          <path class="thin" d="M760 430 C770 330 800 245 830 175" />
+          <path class="thin" d="M970 430 C930 330 915 245 900 175" />
+          <path class="thin" d="M970 430 C1020 330 1055 245 1080 175" />
+
+          <!-- sibling branches left -->
+          <path class="thin" d="M350 740 C270 790 220 835 170 900" />
+          <path class="thin" d="M350 740 C390 790 425 845 450 920" />
+
+          <!-- sibling branches right -->
+          <path class="thin" d="M850 740 C760 790 700 845 665 930" />
+          <path class="thin" d="M850 740 C830 815 820 885 820 950" />
+          <path class="thin" d="M850 740 C930 790 1000 845 1040 930" />
+
+          <!-- maternal/paternal sibling branches Tim -->
+          <path class="thin gold" d="M760 430 C650 500 610 565 585 650" />
+          <path class="thin gold" d="M970 430 C1060 500 1080 585 1085 670" />
+
+          <!-- extended branches Alana -->
+          <path class="thin gold" d="M230 430 C120 500 90 580 95 680" />
+          <path class="thin gold" d="M430 430 C500 500 530 575 530 665" />
+        </svg>
+
+        <!-- ALANA GRANDPARENTS -->
+        <div class="person memory placeholder" style="left:10%; top:12%;">
+          <div class="person-card">
+            <h3>[Sandy Parent 1]</h3>
+            <p>Grandparent</p>
+          </div>
+        </div>
+
+        <div class="person memory placeholder" style="left:25%; top:12%;">
+          <div class="person-card">
+            <h3>[Sandy Parent 2]</h3>
+            <p>Grandparent</p>
+          </div>
+        </div>
+
+        <div class="person memory placeholder" style="left:31%; top:12%;">
+          <div class="person-card">
+            <h3>[Judy Parent 1]</h3>
+            <p>Grandparent</p>
+          </div>
+        </div>
+
+        <div class="person memory placeholder" style="left:45%; top:12%;">
+          <div class="person-card">
+            <h3>[Judy Parent 2]</h3>
+            <p>Grandparent</p>
+          </div>
+        </div>
+
+        <!-- TIM GRANDPARENTS -->
+        <div class="person memory" style="left:55%; top:12%;">
+          <div class="person-card">
+            <h3>Thomas</h3>
+            <p>Paternal grandfather</p>
+          </div>
+        </div>
+
+        <div class="person memory" style="left:69%; top:12%;">
+          <div class="person-card">
+            <h3>Marian</h3>
+            <p>Paternal grandmother</p>
+          </div>
+        </div>
+
+        <div class="person living" style="left:75%; top:12%;">
+          <div class="person-card">
+            <h3>Maree</h3>
+            <p>Maternal grandmother</p>
+          </div>
+        </div>
+
+        <div class="person memory" style="left:90%; top:12%;">
+          <div class="person-card">
+            <h3>Pat</h3>
+            <p>Maternal grandfather</p>
+          </div>
+        </div>
+
+        <!-- ALANA PARENTS -->
+        <div class="person primary" style="left:19%; top:29%;">
+          <div class="person-card">
+            <h3>Sandy</h3>
+            <p>Alana's parent</p>
+          </div>
+        </div>
+
+        <div class="person primary" style="left:36%; top:29%;">
+          <div class="person-card">
+            <h3>Judy</h3>
+            <p>Alana's parent</p>
+          </div>
+        </div>
+
+        <!-- TIM PARENTS -->
+        <div class="person primary" style="left:64%; top:29%;">
+          <div class="person-card">
+            <h3>Art</h3>
+            <p>Tim's father</p>
+          </div>
+        </div>
+
+        <div class="person primary" style="left:81%; top:29%;">
+          <div class="person-card">
+            <h3>Patricia</h3>
+            <p>Tim's mother</p>
+          </div>
+        </div>
+
+        <!-- ALANA EXTENDED -->
+        <div class="person small placeholder" style="left:8%; top:45%;">
+          <div class="person-card">
+            <h3>[Sandy Sibling]</h3>
+            <p>[Spouse + children]</p>
+          </div>
+        </div>
+
+        <div class="person small placeholder" style="left:44%; top:45%;">
+          <div class="person-card">
+            <h3>[Judy Sibling]</h3>
+            <p>[Spouse + children]</p>
+          </div>
+        </div>
+
+        <!-- TIM EXTENDED -->
+        <div class="person group" style="left:49%; top:44%;">
+          <div class="person-card">
+            <h3>Pat &amp; Elton</h3>
+            <p>Art's sibling and spouse</p>
+            <p>[Add children]</p>
+          </div>
+        </div>
+
+        <div class="person group" style="left:91%; top:44%;">
+          <div class="person-card">
+            <h3>Mike &amp; Melanie</h3>
+            <p>Art's sibling and spouse</p>
+            <p>[Add children]</p>
+          </div>
+        </div>
+
+        <div class="person group" style="left:59%; top:51%;">
+          <div class="person-card">
+            <h3>David &amp; Tracy</h3>
+            <p>Patricia's sibling and spouse</p>
+            <p>[Add children]</p>
+          </div>
+        </div>
+
+        <div class="person group" style="left:79%; top:51%;">
+          <div class="person-card">
+            <h3>Dee &amp; Bart</h3>
+            <p>Patricia's sibling and spouse</p>
+            <p>[Add children]</p>
+          </div>
+        </div>
+
+        <!-- ALANA / SISTER -->
+        <div class="person group" style="left:14%; top:63%;">
+          <div class="person-card">
+            <h3>Lauren &amp; Adam</h3>
+            <p>Alana's sister and brother-in-law</p>
+            <p>Elliot · Coby</p>
+          </div>
+        </div>
+
+        <div class="person primary" style="left:38%; top:64%;">
+          <div class="person-card">
+            <h3>Alana</h3>
+            <p>One half of the wedding</p>
+          </div>
+        </div>
+
+        <!-- TIM / SISTERS -->
+        <div class="person group" style="left:55%; top:65%;">
+          <div class="person-card">
+            <h3>Elizabeth &amp; Dustin</h3>
+            <p>Lincoln · Lillian · Lucy</p>
+          </div>
+        </div>
+
+        <div class="person group" style="left:69%; top:68%;">
+          <div class="person-card">
+            <h3>Catherine &amp; Zach</h3>
+            <p>Camryn · Macie</p>
+          </div>
+        </div>
+
+        <div class="person group" style="left:86%; top:65%;">
+          <div class="person-card">
+            <h3>Josee &amp; Chance</h3>
+            <p>Youngest sister and brother-in-law</p>
+          </div>
+        </div>
+
+        <div class="person primary" style="left:62%; top:76%;">
+          <div class="person-card">
+            <h3>Tim</h3>
+            <p>One half of the wedding</p>
+          </div>
+        </div>
+
+        <!-- UNION -->
+        <div class="person union" style="left:50%; top:88%;">
+          <div class="person-card">
+            <h3>Alana ✦ Tim</h3>
+            <p>The branch where both family lines join</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="legend" aria-label="Family tree legend">
+        <span>Gold parchment: direct family line</span>
+        <span>Green parchment: sibling household</span>
+        <span>Gray parchment: remembered with love</span>
+        <span>Dashed parchment: information to add</span>
+      </div>
+
+      <section class="panel family-footer">
+        <h2>The New Branch Begins Here</h2>
+
+        <p>
+          Generations rise through the canopy, families spread across
+          the branches, and the roots meet at Tim and Alana.
+        </p>
+
+        <p>
+          <a class="button" href="index.html">
+            RETURN TO THE MAIN SITE
+          </a>
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <div class="badges">
+        <span class="badge">TAPESTRY RESTORED</span>
+        <span class="badge">ROOTS ENTWINED</span>
+        <span class="badge">NEW BRANCH FORMING</span>
+      </div>
+
+      <p>
+        You are archive visitor
+        <span class="counter" data-visitor-count>000000</span>
+      </p>
+
+      <p class="small">
+        © <span data-year></span> <span data-short-couple></span>
+      </p>
+    </footer>
+  </div>
+
+  <script src="assets/js/main.js"></script>
 </body>
 </html>
