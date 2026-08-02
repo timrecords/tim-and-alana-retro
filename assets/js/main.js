@@ -94,3 +94,83 @@
   const year = document.querySelector("[data-year]");
   if (year) year.textContent = new Date().getFullYear();
 })();
+
+<script>
+  const storyLightbox =
+    document.getElementById("story-lightbox");
+
+  const storyLightboxImage =
+    document.getElementById("story-lightbox-image");
+
+  const storyLightboxCaption =
+    document.getElementById("story-lightbox-caption");
+
+  const storyLightboxClose =
+    document.getElementById("story-lightbox-close");
+
+  const storyThumbnails =
+    document.querySelectorAll(".story-thumbnail");
+
+  let lastFocusedThumbnail = null;
+
+  function openStoryLightbox(thumbnail) {
+    const thumbnailImage =
+      thumbnail.querySelector("img");
+
+    lastFocusedThumbnail = thumbnail;
+
+    storyLightboxImage.src =
+      thumbnail.dataset.fullImage || thumbnailImage.src;
+
+    storyLightboxImage.alt =
+      thumbnailImage.alt;
+
+    storyLightboxCaption.textContent =
+      thumbnail.dataset.caption || "";
+
+    storyLightbox.hidden = false;
+
+    document.body.style.overflow = "hidden";
+
+    storyLightboxClose.focus();
+  }
+
+  function closeStoryLightbox() {
+    storyLightbox.hidden = true;
+
+    storyLightboxImage.src = "";
+    storyLightboxImage.alt = "";
+
+    document.body.style.overflow = "";
+
+    if (lastFocusedThumbnail) {
+      lastFocusedThumbnail.focus();
+    }
+  }
+
+  storyThumbnails.forEach((thumbnail) => {
+    thumbnail.addEventListener("click", () => {
+      openStoryLightbox(thumbnail);
+    });
+  });
+
+  storyLightboxClose.addEventListener(
+    "click",
+    closeStoryLightbox
+  );
+
+  storyLightbox.addEventListener("click", (event) => {
+    if (event.target === storyLightbox) {
+      closeStoryLightbox();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (
+      event.key === "Escape" &&
+      !storyLightbox.hidden
+    ) {
+      closeStoryLightbox();
+    }
+  });
+</script>

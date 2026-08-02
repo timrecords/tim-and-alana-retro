@@ -682,3 +682,181 @@ body.theme-time {
     margin-top:16px;
     color:#ffe87a;
 }
+
+.story-gallery {
+  margin: 24px 0;
+}
+
+.story-gallery-heading {
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+.story-gallery-heading h3 {
+  margin-bottom: 5px;
+}
+
+.thumbnail-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  align-items: start;
+}
+
+.story-thumbnail {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  padding: 6px;
+  background: #fff;
+  color: #2d2422;
+  border: 3px outset #d7cdc4;
+  box-shadow: 4px 4px 0 rgba(45, 36, 34, 0.28);
+  cursor: pointer;
+  transform: rotate(var(--photo-tilt, -1deg));
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    z-index 0s;
+}
+
+.story-thumbnail:nth-child(2n) {
+  --photo-tilt: 1deg;
+}
+
+.story-thumbnail:nth-child(3n) {
+  --photo-tilt: -1.5deg;
+}
+
+.story-thumbnail img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.thumbnail-label {
+  display: block;
+  padding: 7px 4px 2px;
+  font-family: "Comic Sans MS", "Trebuchet MS", cursive;
+  font-size: 0.78rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+/*
+  Enlarges the thumbnail over nearby photos.
+  Using focus-visible also supports keyboard navigation.
+*/
+.story-thumbnail:hover,
+.story-thumbnail:focus-visible {
+  z-index: 10;
+  transform: scale(1.85) rotate(0deg);
+  box-shadow:
+    10px 12px 0 rgba(45, 36, 34, 0.3),
+    0 0 20px rgba(143, 43, 60, 0.25);
+  outline: 4px solid #f2b705;
+  outline-offset: 2px;
+}
+
+/*
+  Keep edge thumbnails from expanding beyond the page.
+*/
+.story-thumbnail:nth-child(4n + 1):hover,
+.story-thumbnail:nth-child(4n + 1):focus-visible {
+  transform-origin: left center;
+}
+
+.story-thumbnail:nth-child(4n):hover,
+.story-thumbnail:nth-child(4n):focus-visible {
+  transform-origin: right center;
+}
+
+/* Full-screen image viewer for clicks and mobile taps. */
+.story-lightbox {
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(20, 12, 22, 0.9);
+}
+
+.story-lightbox[hidden] {
+  display: none;
+}
+
+.lightbox-inner {
+  max-width: min(900px, 100%);
+  max-height: 90vh;
+  padding: 10px;
+  overflow: auto;
+  background: #fffdf8;
+  border: 5px ridge #d7cdc4;
+  box-shadow: 10px 10px 0 #000;
+  text-align: center;
+}
+
+.lightbox-inner img {
+  display: block;
+  max-width: 100%;
+  max-height: 75vh;
+  margin: auto;
+  object-fit: contain;
+}
+
+.lightbox-inner p {
+  margin: 10px 0 2px;
+  color: #2d2422;
+  font-family: "Comic Sans MS", "Trebuchet MS", cursive;
+  font-weight: bold;
+}
+
+.lightbox-close {
+  position: fixed;
+  top: 18px;
+  right: 22px;
+  z-index: 10000;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  background: #fff7c7;
+  color: #8f2b3c;
+  border: 4px outset #fff;
+  font: bold 30px/1 Arial, sans-serif;
+  cursor: pointer;
+}
+
+@media (max-width: 850px) {
+  .thumbnail-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .story-thumbnail:hover,
+  .story-thumbnail:focus-visible {
+    transform: scale(1.45) rotate(0deg);
+  }
+}
+
+@media (max-width: 600px) {
+  .thumbnail-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /*
+    Disable large hover expansion on touch-sized layouts.
+    Guests can tap to use the lightbox instead.
+  */
+  .story-thumbnail:hover,
+  .story-thumbnail:focus-visible {
+    transform: translateY(-3px) rotate(0deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .story-thumbnail {
+    transition: none;
+  }
+}

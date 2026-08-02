@@ -45,6 +45,169 @@
   <h3>Act II — The Montage</h3>
   <p>Photo slider for: concerts, trips, sports, maybe just accordion thumbnails vibes</p>
   <p>Short story or just let the pics rock and story is on other site</p>
+
+
+<section class="story-gallery" aria-labelledby="story-gallery-title">
+  <div class="story-gallery-heading">
+    <h3 id="story-gallery-title">The Montage</h3>
+
+    <p>
+      Sports games, concerts, road trips, and a highly edited selection
+      of our greatest hits.
+    </p>
+  </div>
+
+  <div class="thumbnail-grid">
+    <button
+      class="story-thumbnail"
+      type="button"
+      data-full-image="assets/images/story-game-1.jpg"
+      data-caption="At [TEAM OR GAME], [YEAR]"
+      aria-label="Enlarge photo from a sports game"
+    >
+      <img
+        src="assets/images/story-game-1.jpg"
+        alt="Tim and Alana at [SPORTS GAME]"
+      >
+
+      <span class="thumbnail-label">Game Night</span>
+    </button>
+
+    <button
+      class="story-thumbnail"
+      type="button"
+      data-full-image="assets/images/story-trip-1.jpg"
+      data-caption="[TRIP LOCATION], [YEAR]"
+      aria-label="Enlarge photo from a trip"
+    >
+      <img
+        src="assets/images/story-trip-1.jpg"
+        alt="Tim and Alana visiting [TRIP LOCATION]"
+      >
+
+      <span class="thumbnail-label">On Location</span>
+    </button>
+
+    <button
+      class="story-thumbnail"
+      type="button"
+      data-full-image="assets/images/story-concert-1.jpg"
+      data-caption="[ARTIST OR CONCERT], [YEAR]"
+      aria-label="Enlarge concert photo"
+    >
+      <img
+        src="assets/images/story-concert-1.jpg"
+        alt="Tim and Alana at a concert"
+      >
+
+      <span class="thumbnail-label">Live in Concert</span>
+    </button>
+
+    <button
+      class="story-thumbnail"
+      type="button"
+      data-full-image="assets/images/story-trip-2.jpg"
+      data-caption="[TRIP LOCATION], [YEAR]"
+      aria-label="Enlarge another trip photo"
+    >
+      <img
+        src="assets/images/story-trip-2.jpg"
+        alt="Tim and Alana on a trip to [LOCATION]"
+      >
+
+      <span class="thumbnail-label">Road Trip</span>
+    </button>
+
+    <button
+      class="story-thumbnail"
+      type="button"
+      data-full-image="assets/images/story-game-2.jpg"
+      data-caption="[TEAM OR EVENT], [YEAR]"
+      aria-label="Enlarge another sports photo"
+    >
+      <img
+        src="assets/images/story-game-2.jpg"
+        alt="Tim and Alana attending [SPORTS EVENT]"
+      >
+
+      <span class="thumbnail-label">Overtime</span>
+    </button>
+
+    <button
+      class="story-thumbnail"
+      type="button"
+      data-full-image="assets/images/story-concert-2.jpg"
+      data-caption="[ARTIST OR VENUE], [YEAR]"
+      aria-label="Enlarge another concert photo"
+    >
+      <img
+        src="assets/images/story-concert-2.jpg"
+        alt="Tim and Alana at [CONCERT OR VENUE]"
+      >
+
+      <span class="thumbnail-label">Encore</span>
+    </button>
+
+    <button
+      class="story-thumbnail"
+      type="button"
+      data-full-image="assets/images/story-trip-3.jpg"
+      data-caption="[TRIP LOCATION], [YEAR]"
+      aria-label="Enlarge vacation photo"
+    >
+      <img
+        src="assets/images/story-trip-3.jpg"
+        alt="Tim and Alana on vacation in [LOCATION]"
+      >
+
+      <span class="thumbnail-label">Vacation Episode</span>
+    </button>
+
+    <button
+      class="story-thumbnail"
+      type="button"
+      data-full-image="assets/images/story-favorite-1.jpg"
+      data-caption="[SHORT CAPTION]"
+      aria-label="Enlarge favorite photo"
+    >
+      <img
+        src="assets/images/story-favorite-1.jpg"
+        alt="[DESCRIBE THE PHOTO]"
+      >
+
+      <span class="thumbnail-label">Fan Favorite</span>
+    </button>
+  </div>
+</section>
+
+<div
+  class="story-lightbox"
+  id="story-lightbox"
+  hidden
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="story-lightbox-caption"
+>
+  <button
+    class="lightbox-close"
+    id="story-lightbox-close"
+    type="button"
+    aria-label="Close enlarged image"
+  >
+    ×
+  </button>
+
+  <div class="lightbox-inner">
+    <img
+      id="story-lightbox-image"
+      src=""
+      alt=""
+    >
+
+    <p id="story-lightbox-caption"></p>
+  </div>
+</div>
+
 </section>
 
 <section class="panel">
